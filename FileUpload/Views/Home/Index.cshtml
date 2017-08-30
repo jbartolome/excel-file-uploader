@@ -1,0 +1,54 @@
+﻿@model List<FileUpload.Models.Users>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>File Uploader</h2>
+
+
+
+@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>Select an Excel file to upload:</p>
+    <input type="file" name="UploadedFile" />
+
+    <input type="submit" name="Submit" value="Submit" />
+}
+
+<h3>Uploaded Data</h3>
+<p>Data will appear below after completing the section above.</p>
+<table class="table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                Employee Id
+            </th>
+            <th>
+                Employee Name
+            </th>
+            <th>
+                Benefit Code
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.EmployeeId
+                    </td>
+                    <td>
+                        @item.FullName
+                    </td>
+                    <td>
+                        @item.BenefitCode
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+        </table>
